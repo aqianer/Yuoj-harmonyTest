@@ -1,0 +1,48 @@
+// Index.ets
+// 导入页面路由模块
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'HarmonyOS';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+      Button() {
+        Text('Next')
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+      }
+      .type(ButtonType.Capsule)
+      .margin({
+        top: 20
+      })
+      .backgroundColor('#0D9FFB')
+      .width('40%')
+      .height('5%')
+      .alignRules({
+        bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
+        middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      })
+      .onClick(() => {
+        console.info(`Succeeded in clicking the 'Next' button.`)
+        // 跳转到第二页
+        router.pushUrl({ url: 'pages/Login' }).then(() => {
+          console.info('Succeeded in jumping to the second page.')
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to jump to the second page. Code is ${err.code}, message is ${err.message}`)
+        })
+      })
+    }
+  }
+}
