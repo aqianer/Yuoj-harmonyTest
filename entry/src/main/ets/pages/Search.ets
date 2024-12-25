@@ -52,10 +52,27 @@ struct SearchPage {
           FlexLayout({ searchArr: $searchArr })
         }
         // 猜你喜欢
-
+        Flex({ alignItems: ItemAlign.Center }) {
+          // TODO 插入小火苗图片
+          Text($r('app.string.guess_likes'))
+            .fontSize($r('app.float.font_size'))
+            .fontColor($r('app.color.recent_search_font_color'))
+            .fontWeight(StyleConstants.FONT_WEIGHT)
+            .height(StyleConstants.RECENT_TEXT_HEIGHT)
+            .layoutWeight(StyleConstants.LAYOUT_WEIGHT)
+            .margin({
+              left: $r('app.float.margin_left'),
+              top: $r('app.float.clear_text_top'),
+              bottom: $r('app.float.clear_text_bottom')
+            })
+        }
+        // 弹性布局渲染数据
+        FlexLayout({ searchArr: $searchArr })
         // 热帖，热门话题，排行榜
         Row() {
-
+          // TODO 先解决样式参考 https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_NEXT-RankingDemo
+          
+          
         }
       }
       .onTouch(()=>{
