@@ -183,6 +183,89 @@
     {
       "name": "search",
       "value": "Search"
+    },{
+      "name": "recent_searches",
+      "value": "Recent Searches"
+    },
+    {
+      "name": "no_search_content",
+      "value": "There is no search content"
+    },
+    {
+      "name": "guess_likes",
+      "value": "猜你喜欢"
+    },
+    {
+      "name": "title",
+      "value": "Ranking List"
+    },
+    {
+      "name": "prompt_text",
+      "value": "Press again to exit the app"
+    },
+    {
+      "name": "entryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "entryAbility_label",
+      "value": "RankingDemo"
+    },
+    {
+      "name": "page_type",
+      "value": "variety"
+    },
+    {
+      "name": "page_number",
+      "value": "ranking"
+    },
+    {
+      "name": "page_vote",
+      "value": "vote"
+    },
+    {
+      "name": "title_default",
+      "value": " "
+    },
+    {
+      "name": "fruit_watermelon",
+      "value": "watermelon"
+    },
+    {
+      "name": "fruit_apple",
+      "value": "apple"
+    },
+    {
+      "name": "fruit_banana",
+      "value": "banana"
+    },
+    {
+      "name": "fruit_grapes",
+      "value": "grapes"
+    },
+    {
+      "name": "fruit_red_grape",
+      "value": "grape"
+    },
+    {
+      "name": "fruit_pears",
+      "value": "pears"
+    },
+    {
+      "name": "fruit_pineapple",
+      "value": "pineapple"
+    },
+    {
+      "name": "fruit_durian",
+      "value": "durian"
+    },
+    {
+      "name": "fruit_guava",
+      "value": "guava"
+    },
+    {
+      "name": "fruit_carambola",
+      "value": "carambola"
     }
   ]
 }
