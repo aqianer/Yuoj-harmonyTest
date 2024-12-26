@@ -1,15 +1,19 @@
-import { TRANSITION_ANIMATION_DURATION } from '../common/constant/CommonConstant';
+import { TitleBarStyle, TRANSITION_ANIMATION_DURATION } from '../common/constant/CommonConstant';
 import StyleConstants from '../common/constant/StyleConstants';
 import FlexLayout from '../view/FlexLayout';
 import SearchInput from '../view/SearchInput';
 import SearchViewModel from '../viewmodel/SearchViewModel';
 import { inputMethod } from '@kit.IMEKit';
+import RankPage from '../view/RankPage';
 
 @Entry
 @Component
 struct SearchPage {
   @State searchArr: Array<string> = SearchViewModel.getSearchArrData();
   pathStack: NavPathStack = AppStorage.get("PathStack") as NavPathStack
+  @State isRefreshData: boolean = true; // User click the button to decide whether to switch data.
+  @State isSwitchDataSource: boolean = true;
+  @State title: Resource = $r('app.string.title');
 
   aboutToAppear(): void {
     // build之前去请求数据
@@ -69,10 +73,33 @@ struct SearchPage {
         // 弹性布局渲染数据
         FlexLayout({ searchArr: $searchArr })
         // 热帖，热门话题，排行榜
+        Flex({ alignItems: ItemAlign.Center }) {
+          Text(this.title)
+            .fontSize($r('app.float.font_size'))
+            .fontColor($r('app.color.recent_search_font_color'))
+            .fontWeight(StyleConstants.FONT_WEIGHT)
+            .height(StyleConstants.RECENT_TEXT_HEIGHT)
+            .layoutWeight(StyleConstants.LAYOUT_WEIGHT)
+            .margin({
+              left: $r('app.float.margin_left'),
+              top: $r('app.float.clear_text_top'),
+              bottom: $r('app.float.clear_text_bottom')
+            })
+
+
+          Image($r('app.media.loading'))
+            .height(StyleConstants.REFRESH_IMAGE_HEIGHT)
+            .width(StyleConstants.REFRESH_IMAGE_WIDTH)
+            .margin({ right: $r('app.float.clear_image_right') })
+            .onClick(() => {
+              this.isRefreshData = !this.isRefreshData;
+            })
+        }
+
         Row() {
           // TODO 先解决样式参考 https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/tutorials_NEXT-RankingDemo
-          
-          
+          RankPage({isRefreshData: $isSwitchDataSource})
+
         }
       }
       .onTouch(()=>{
