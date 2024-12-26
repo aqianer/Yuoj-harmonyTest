@@ -181,8 +181,24 @@
       "value": "Network request failed, please try later!"
     },
     {
+      "name": "recent_searches",
+      "value": "最近搜索"
+    },
+    {
       "name": "search",
       "value": "搜索"
+    },
+    {
+      "name": "guess_likes",
+      "value": "猜你喜欢"
+    },
+    {
+      "name": "title",
+      "value": "排行榜"
+    },
+    {
+      "name": "prompt_text",
+      "value": "再按一次退出程序"
     }
   ]
 }
