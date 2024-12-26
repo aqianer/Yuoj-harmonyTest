@@ -17,10 +17,6 @@
       "value": "Login page"
     },
     {
-      "name": "login_url",
-      "value": "http://172.24.80.1:8118/api/user/login"
-    },
-    {
       "name": "login_more",
       "value": "Log in to your account to use more services"
     },
@@ -145,8 +141,28 @@
       "value": "List"
     },
     {
+      "name": "release_refresh_text",
+      "value": "Loosen the refresh"
+    },
+    {
       "name": "home_title",
       "value": "Home"
+    },
+    {
+      "name": "http_error_message",
+      "value": "Network request failed, please try later!"
+    },
+    {
+      "name": "pull_down_refresh_text",
+      "value": "The drop-down refresh"
+    },
+    {
+      "name": "title",
+      "value": "Ranking List"
+    },
+    {
+      "name": "prompt_text",
+      "value": "Press again to exit the app"
     }
   ]
 }
