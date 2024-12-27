@@ -2,7 +2,6 @@ import TabBar from '../view/TabBar';
 import { CommonConstant as Const } from '../common/constant/CommonConstant';
 import SearchViewModel from '../viewmodel/SearchViewModel';
 import SearchInput from '../view/SearchInput';
-import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -55,8 +54,11 @@ struct Home {
 
           TabContent() {
             Column() {
+              // 检查是否登录
+
+
               Text('我的内容')
-            }.width('100%').height('100%').backgroundColor('#E67C92').justifyContent(FlexAlign.Center)
+            }.width('100%').height('100%').backgroundColor($r('app.color.listColor')).justifyContent(FlexAlign.Center)
           }.tabBar(this.tabBuilder('我的', 3))
         }
         .vertical(false)
@@ -72,6 +74,7 @@ struct Home {
         .scrollable(false)
       }.width('100%').height('100%')
     }
+    .hideToolBar(true)
     .mode(NavigationMode.Auto)
 
   }
