@@ -14,17 +14,28 @@
  */
 
 import StyleConstants from '../common/constant/StyleConstants';
-import { router } from '@kit.ArkUI';
 
 @Component
 export default struct SearchInput {
   @State searchInput: string = '';
   @Link searchArr: Array<string>;
   @State allowJump: boolean = true
+  @State defaultText: string = ''
+  @State isSearchPage: boolean = false
+  pathStack: NavPathStack = new NavPathStack()
+  controller: SearchController = new SearchController()
+
+  aboutToAppear() {
+    // query navigation info
+    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo
+    this.pathStack = navigationInfo.pathStack;
+  }
 
   build() {
     Flex({ alignItems: ItemAlign.Center }) {
       // Search component.
+      // TODO 焦点管理
+      // TODO placeholder的滚动显示
       Search({
         value: this.searchInput,
         placeholder: StyleConstants.SEARCH_PLACEHOLDER,
@@ -48,26 +59,45 @@ export default struct SearchInput {
           radius: $r('app.float.border_radius'),
           style: BorderStyle.Solid
         })
-        .onChange((value: string) => {
-          this.searchInput = value;
-        })
-        .onClick(()=>{
-          if(this.allowJump){
-            router.pushUrl({url:'pages/Search'}).then().catch()
+        .cancelButton({
+          style: CancelButtonStyle.INPUT,
+          icon: {
+            // TODO 待替换
+            src: $r('app.media.ic_no_search')
           }
         })
-
-      // Search Text.
-      Text($r('app.string.search'))
-        .fontSize($r('app.float.font_size'))
-        .fontColor($r('app.color.search_font_color'))
+        .onChange((value: string) => {
+          this.searchInput = value;
+        })// .cancelButton()
         .onClick(() => {
+          if (this.allowJump) {
+            this.pathStack.pushPath({ name:'Search' })
+            // router.pushUrl({ url: 'pages/Search' }).then().catch()
+          }
+        })// TODO 搜索框事件回调
+        .onSubmit(() => {
           if (this.searchInput !== '' && this.searchInput.trim().length > 0) {
             // Use unshift to add data to the array header.
             this.searchArr.unshift(this.searchInput.trim());
           }
           this.searchInput = '';
         })
+      // Search Text.
+      if (this.isSearchPage) {
+        Text('取消')
+          .fontSize($r('app.float.font_size'))
+          .fontColor($r('app.color.search_font_color'))
+          .onClick(() => {
+            this.pathStack.clear()
+          })
+      } else {
+        // 首页
+        // 默认是 加号
+        // TODO 更多按钮
+        Text('更多')
+          .fontSize($r('app.float.font_size'))
+          .fontColor($r('app.color.search_font_color'))
+      }
     }
     .width(StyleConstants.FULL_PERCENT)
   }
